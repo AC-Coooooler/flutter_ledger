@@ -17,6 +17,7 @@ linter:
     avoid_void_async: true
     constant_identifier_names: false
     directives_ordering: true
+    library_private_types_in_public_api: false
     prefer_const_constructors: true
     prefer_const_constructors_in_immutables: true
     prefer_const_declarations: true

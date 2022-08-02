@@ -11,6 +11,8 @@ environment:
 dependencies:
   collection: ^1.16.0
   cookie_jar: ^3.0.1
+  copy_with_extension: ^4.0.2
+  decimal: ^2.2.0
   device_info_plus: ^4.0.0
   dio: ^4.0.6
   dio_cookie_manager: ^2.0.0
@@ -36,6 +38,7 @@ dev_dependencies:
   archive: ^3.3.0
   args: ^2.3.1
   build_runner: ^2.2.0
+  copy_with_extension_gen: ^4.0.2
   crypto: ^3.0.2
   flutter_lints: ^2.0.0
   json_serializable: ^6.3.1

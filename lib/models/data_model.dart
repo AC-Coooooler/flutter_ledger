@@ -2,7 +2,10 @@
 // Use of this source code is governed by a MIT license that can be found in the
 // LICENSE file.
 
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:decimal/decimal.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../constants/constants.dart';
 import '../utils/log_util.dart';
@@ -10,6 +13,11 @@ import '../utils/log_util.dart';
 part 'data_model.d.dart';
 
 part 'data_model.g.dart';
+
+// Belows are models part.
+part 'bill_model.dart';
+part 'person_model.dart';
+part 'record_model.dart';
 
 typedef Json = Map<String, dynamic>;
 typedef JsonList = List<Json>;
@@ -19,6 +27,8 @@ abstract class DataModel extends Equatable {
   const DataModel();
 
   Json toJson();
+
+  dynamic get copyWith;
 
   @override
   String toString() => globalJsonEncoder.convert(toJson());
@@ -57,6 +67,9 @@ class EmptyDataModel extends DataModel {
 
   @override
   Json toJson() => const <String, dynamic>{};
+
+  @override
+  EmptyDataModel get copyWith => this;
 
   @override
   List<Object?> get props => <Object?>[null];
