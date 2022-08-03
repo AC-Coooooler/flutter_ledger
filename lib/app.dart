@@ -80,6 +80,7 @@ class LedgerAppState extends State<LedgerApp> with WidgetsBindingObserver {
         title: 'Ledger',
         theme: ThemeData(
           primarySwatch: themeColorLight.swatch,
+          useMaterial3: true,
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,

@@ -1,4 +1,5 @@
 export 'package:collection/collection.dart';
+export 'package:decimal/decimal.dart';
 export 'package:ff_annotation_route_library/ff_annotation_route_library.dart';
 export 'package:flutter/services.dart' show HapticFeedback, TextInputFormatter;
 

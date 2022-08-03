@@ -7,6 +7,7 @@ import 'package:ff_annotation_route_library/ff_annotation_route_library.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ledger/exports.dart';
 
+import '../pages/bill.dart';
 import '../pages/home.dart';
 import '../pages/splash.dart';
 
@@ -18,6 +19,19 @@ FFRouteSettings getRouteSettings({
   final Map<String, dynamic> safeArguments =
       arguments ?? const <String, dynamic>{};
   switch (name) {
+    case 'bill-page':
+      return FFRouteSettings(
+        name: name,
+        arguments: arguments,
+        builder: () => BillPage(
+          key: asT<Key?>(
+            safeArguments['key'],
+          ),
+          bill: asT<BillModel>(
+            safeArguments['bill'],
+          )!,
+        ),
+      );
     case 'home-page':
       return FFRouteSettings(
         name: name,

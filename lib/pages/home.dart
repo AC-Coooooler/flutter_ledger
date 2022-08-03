@@ -15,6 +15,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final bills = <BillModel>[
+    BillModel(
+      name: 'Test bill',
+      records: [
+        RecordModel(
+          name: 'Test record',
+          date: DateTime(2022, 8, 3),
+          expense: true,
+          amount: Decimal.parse('367.5'),
+          people: const [PersonModel(name: 'Alex')],
+        ),
+      ],
+    ),
+  ];
+
   // int _currentIndex = 0;
 
   // void _selectIndex(int index) {
@@ -27,9 +42,51 @@ class _HomePageState extends State<HomePage> {
     return MediaQuery.removePadding(
       context: context,
       // removeBottom: true,
-      child: const LazyIndexedStack(
+      child: LazyIndexedStack(
         // index: _currentIndex,
-        children: <Widget>[SizedBox.shrink()],
+        children: <Widget>[
+          Scaffold(
+            appBar: AppBar(
+              title: const Text('Ledger'),
+            ),
+            body: ListView.builder(
+              itemCount: bills.length,
+              itemBuilder: (context, index) {
+                final bill = bills[index];
+                return Card(
+                  child: ListTile(
+                    leading: SizedBox.fromSize(
+                      size: const Size.square(36),
+                      child: CircleAvatar(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: Text(bill.name.characters.first),
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      bill.name,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      bill.startDate?.toIso8601String() ?? 'No records',
+                    ),
+                    trailing: Text('${bill.records.length} records'),
+                    onTap: () => Navigator.of(context).pushNamed(
+                      Routes.billPage.name,
+                      arguments: Routes.billPage.d(bill: bill),
+                    ),
+                  ),
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              tooltip: 'Add new bill',
+              child: const Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
     );
   }
