@@ -10,6 +10,7 @@ class RecordModel extends DataModel {
   const RecordModel({
     required this.name,
     required this.date,
+    required this.expense,
     required this.amount,
     required this.people,
   });
@@ -19,6 +20,7 @@ class RecordModel extends DataModel {
   final String name;
   @JsonKey(fromJson: _dateTimeFromJson, toJson: _dateTimeToJson)
   final DateTime date;
+  final bool expense;
   @JsonKey(fromJson: _decimalTimeFromJson, toJson: _decimalToJson)
   final Decimal amount;
   @JsonKey(defaultValue: [])
@@ -36,5 +38,5 @@ class RecordModel extends DataModel {
   _$RecordModelCWProxy get copyWith => _$RecordModelCWProxyImpl(this);
 
   @override
-  List<Object?> get props => <Object?>[name, date, amount, people];
+  List<Object?> get props => <Object?>[name, date, expense, amount, people];
 }

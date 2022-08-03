@@ -20,6 +20,19 @@ class BillModel extends DataModel {
   final List<RecordModel> records;
   final String? remark;
 
+  DateTime? get startDate {
+    if (records.isEmpty) {
+      return null;
+    }
+    DateTime d = DateTime.now();
+    for (final RecordModel r in records) {
+      if (r.date.isBefore(d)) {
+        d = r.date;
+      }
+    }
+    return d;
+  }
+
   @override
   Json toJson() => _$BillModelToJson(this);
 

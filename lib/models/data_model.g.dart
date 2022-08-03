@@ -129,6 +129,8 @@ abstract class _$RecordModelCWProxy {
 
   RecordModel date(DateTime date);
 
+  RecordModel expense(bool expense);
+
   RecordModel name(String name);
 
   RecordModel people(List<PersonModel> people);
@@ -142,6 +144,7 @@ abstract class _$RecordModelCWProxy {
   RecordModel call({
     Decimal? amount,
     DateTime? date,
+    bool? expense,
     String? name,
     List<PersonModel>? people,
   });
@@ -160,6 +163,9 @@ class _$RecordModelCWProxyImpl implements _$RecordModelCWProxy {
   RecordModel date(DateTime date) => this(date: date);
 
   @override
+  RecordModel expense(bool expense) => this(expense: expense);
+
+  @override
   RecordModel name(String name) => this(name: name);
 
   @override
@@ -176,6 +182,7 @@ class _$RecordModelCWProxyImpl implements _$RecordModelCWProxy {
   RecordModel call({
     Object? amount = const $CopyWithPlaceholder(),
     Object? date = const $CopyWithPlaceholder(),
+    Object? expense = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? people = const $CopyWithPlaceholder(),
   }) {
@@ -188,6 +195,10 @@ class _$RecordModelCWProxyImpl implements _$RecordModelCWProxy {
           ? _value.date
           // ignore: cast_nullable_to_non_nullable
           : date as DateTime,
+      expense: expense == const $CopyWithPlaceholder() || expense == null
+          ? _value.expense
+          // ignore: cast_nullable_to_non_nullable
+          : expense as bool,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -236,6 +247,7 @@ Map<String, dynamic> _$PersonModelToJson(PersonModel instance) =>
 RecordModel _$RecordModelFromJson(Map<String, dynamic> json) => RecordModel(
       name: json['name'] as String,
       date: RecordModel._dateTimeFromJson(json['date'] as String),
+      expense: json['expense'] as bool,
       amount: RecordModel._decimalTimeFromJson(json['amount'] as String),
       people: (json['people'] as List<dynamic>?)
               ?.map((e) => PersonModel.fromJson(e as Map<String, dynamic>))
@@ -247,6 +259,7 @@ Map<String, dynamic> _$RecordModelToJson(RecordModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'date': RecordModel._dateTimeToJson(instance.date),
+      'expense': instance.expense,
       'amount': RecordModel._decimalToJson(instance.amount),
       'people': instance.people.map((e) => e.toJson()).toList(),
     };
