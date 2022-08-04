@@ -248,7 +248,7 @@ RecordModel _$RecordModelFromJson(Map<String, dynamic> json) => RecordModel(
       name: json['name'] as String,
       date: DateTime.parse(json['date'] as String),
       expense: json['expense'] as bool,
-      amount: RecordModel._decimalTimeFromJson(json['amount'] as String),
+      amount: Decimal.fromJson(json['amount'] as String),
       people: (json['people'] as List<dynamic>?)
               ?.map((e) => PersonModel.fromJson(e as Map<String, dynamic>))
               .toList() ??

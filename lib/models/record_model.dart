@@ -20,12 +20,11 @@ class RecordModel extends DataModel {
   final String name;
   final DateTime date;
   final bool expense;
-  @JsonKey(fromJson: _decimalTimeFromJson, toJson: _decimalToJson)
+  @JsonKey(fromJson: Decimal.fromJson, toJson: _decimalToJson)
   final Decimal amount;
   @JsonKey(defaultValue: [])
   final List<PersonModel> people;
 
-  static Decimal _decimalTimeFromJson(String value) => Decimal.fromJson(value);
   static String _decimalToJson(Decimal value) => value.toJson();
 
   @override
