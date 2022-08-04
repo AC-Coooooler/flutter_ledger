@@ -32,7 +32,9 @@ class _SplashPageState extends State<SplashPage> {
         systemNavigationBarColor: Colors.transparent,
       ),
     );
+    await Hive.initFlutter();
     await Future.wait(<Future<void>>[
+      Boxes.openBoxes(),
       DeviceUtil.initDeviceInfo(forceRefresh: true),
       PackageUtil.initInfo(),
       HttpUtil.init(),

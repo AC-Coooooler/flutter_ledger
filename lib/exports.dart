@@ -1,7 +1,10 @@
+export 'dart:convert';
+
 export 'package:collection/collection.dart';
 export 'package:decimal/decimal.dart';
 export 'package:ff_annotation_route_library/ff_annotation_route_library.dart';
 export 'package:flutter/services.dart' show HapticFeedback, TextInputFormatter;
+export 'package:hive_flutter/hive_flutter.dart';
 
 export 'constants/constants.dart';
 // export 'constants/resources.dart';
@@ -17,6 +20,7 @@ export 'extensions/num_extension.dart';
 export 'extensions/state_extension.dart';
 export 'extensions/string_extension.dart';
 
+export 'internals/boxes.dart';
 export 'internals/instance.dart';
 export 'internals/methods.dart';
 export 'internals/urls.dart';
