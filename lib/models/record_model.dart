@@ -18,7 +18,6 @@ class RecordModel extends DataModel {
   factory RecordModel.fromJson(Json json) => _$RecordModelFromJson(json);
 
   final String name;
-  @JsonKey(fromJson: _dateTimeFromJson, toJson: _dateTimeToJson)
   final DateTime date;
   final bool expense;
   @JsonKey(fromJson: _decimalTimeFromJson, toJson: _decimalToJson)
@@ -26,8 +25,6 @@ class RecordModel extends DataModel {
   @JsonKey(defaultValue: [])
   final List<PersonModel> people;
 
-  static DateTime _dateTimeFromJson(String value) => DateTime.parse(value);
-  static String _dateTimeToJson(DateTime value) => value.toIso8601String();
   static Decimal _decimalTimeFromJson(String value) => Decimal.fromJson(value);
   static String _decimalToJson(Decimal value) => value.toJson();
 
