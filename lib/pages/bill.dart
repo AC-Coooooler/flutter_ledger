@@ -70,15 +70,22 @@ class _BillPageState extends State<BillPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                final RecordModel record = widget.bill.records[index];
+                final record = widget.bill.records[index];
+                final isExpense = record.expense;
                 return Card(
                   child: ListTile(
                     title: Text(record.name),
                     subtitle: Text(record.date.toIso8601String()),
-                    trailing: Icon(
-                      record.expense
-                          ? Icons.output_rounded
-                          : Icons.input_rounded,
+                    trailing: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(text: isExpense ? '-' : '+'),
+                          TextSpan(text: record.amount.toString()),
+                        ],
+                      ),
+                      style: TextStyle(
+                        color: isExpense ? Colors.redAccent : Colors.lightGreen,
+                      ),
                     ),
                   ),
                 );
