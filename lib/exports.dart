@@ -5,6 +5,7 @@ export 'package:decimal/decimal.dart';
 export 'package:ff_annotation_route_library/ff_annotation_route_library.dart';
 export 'package:flutter/services.dart' show HapticFeedback, TextInputFormatter;
 export 'package:hive_flutter/hive_flutter.dart';
+export 'package:intl/intl.dart' show DateFormat;
 
 export 'constants/constants.dart';
 // export 'constants/resources.dart';

@@ -19,6 +19,16 @@ FFRouteSettings getRouteSettings({
   final Map<String, dynamic> safeArguments =
       arguments ?? const <String, dynamic>{};
   switch (name) {
+    case 'bill-adding-page':
+      return FFRouteSettings(
+        name: name,
+        arguments: arguments,
+        builder: () => BillAddingPage(
+          key: asT<Key?>(
+            safeArguments['key'],
+          ),
+        ),
+      );
     case 'bill-page':
       return FFRouteSettings(
         name: name,

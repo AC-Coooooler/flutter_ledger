@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:ledger/exports.dart';
 
 const List<String> routeNames = <String>[
+  'bill-adding-page',
   'bill-page',
   'home-page',
   'splash-page',
@@ -14,6 +15,15 @@ const List<String> routeNames = <String>[
 
 class Routes {
   const Routes._();
+
+  /// 'bill-adding-page'
+  ///
+  /// [name] : 'bill-adding-page'
+  ///
+  /// [constructors] :
+  ///
+  /// BillAddingPage : [Key? key]
+  static const _BillAddingPage billAddingPage = _BillAddingPage();
 
   /// 'bill-page'
   ///
@@ -41,6 +51,22 @@ class Routes {
   ///
   /// SplashPage : [Key? key]
   static const _SplashPage splashPage = _SplashPage();
+}
+
+class _BillAddingPage {
+  const _BillAddingPage();
+
+  String get name => 'bill-adding-page';
+
+  Map<String, dynamic> d({
+    Key? key,
+  }) =>
+      <String, dynamic>{
+        'key': key,
+      };
+
+  @override
+  String toString() => name;
 }
 
 class _BillPage {

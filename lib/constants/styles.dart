@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 const Color themeColorLight = Color(0xff007fff);
 
-const Color failedColor = Color(0xffff6363);
+const Color recordColorExpense = Colors.redAccent;
+const Color recordColorIncome = Colors.lightGreen;
 
 class RadiusConstants {
   const RadiusConstants._();

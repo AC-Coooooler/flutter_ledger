@@ -26,6 +26,15 @@ import '../utils/log_util.dart';
 //   }
 // }
 
+/// Empty counter builder for [TextField].
+Widget? buildEmptyCounter(
+  BuildContext _, {
+  required int currentLength,
+  int? maxLength,
+  required bool isFocused,
+}) =>
+    null;
+
 /// Iterate element and its children to request rebuild.
 void rebuildAllChildren(BuildContext context) {
   LogUtil.d('Rebuilding all elements...', tag: 'rebuildAllChildren');

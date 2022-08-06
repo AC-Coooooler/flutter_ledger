@@ -19,87 +19,36 @@ class _HomePageState extends State<HomePage> {
   final ValueListenable<Box<String>> _boxListenable =
       Boxes.contentBox.listenable();
 
-  // int _currentIndex = 0;
-
-  // void _selectIndex(int index) {
-  //   setState(() {
-  //     _currentIndex = index;
-  //   });
-  // }
-
-  Widget _buildBody(BuildContext context) {
-    return MediaQuery.removePadding(
-      context: context,
-      // removeBottom: true,
-      child: LazyIndexedStack(
-        // index: _currentIndex,
-        children: <Widget>[
-          Scaffold(
-            appBar: AppBar(title: const Text('Ledger')),
-            body: ValueListenableBuilder<Box<String>>(
-              valueListenable: _boxListenable,
-              builder: (_, Box<String> box, __) {
-                final bills = box.values
-                    .map((e) => BillModel.fromJson(jsonDecode(e)))
-                    .toList();
-                if (bills.isEmpty) {
-                  return Center(
-                    child: Text(
-                      'No bills yet.\n'
-                      'Press the button to add one.',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  itemCount: bills.length,
-                  itemBuilder: (context, index) => _BillCard(bills[index]),
-                );
-              },
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              tooltip: 'Add new bill',
-              child: const Icon(Icons.add),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Widget _buildBottomNavigationBar(BuildContext context) {
-  //   return BottomNavigationBar(
-  //     currentIndex: _currentIndex,
-  //     onTap: _selectIndex,
-  //     items: <BottomNavigationBarItem>[
-  //       BottomNavigationBarItem(
-  //         icon: const Icon(Icons.home_outlined),
-  //         activeIcon: const Icon(Icons.home),
-  //         label: context.l10n.navHome,
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: const Icon(Icons.local_fire_department_outlined),
-  //         activeIcon: const Icon(Icons.local_fire_department),
-  //         label: context.l10n.navPins,
-  //       ),
-  //       BottomNavigationBarItem(
-  //         icon: const Icon(Icons.manage_accounts_outlined),
-  //         activeIcon: const Icon(Icons.manage_accounts),
-  //         label: context.l10n.navMe,
-  //       ),
-  //     ],
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(child: _buildBody(context)),
-          // _buildBottomNavigationBar(context),
-        ],
+      appBar: AppBar(title: const Text('Ledger')),
+      body: ValueListenableBuilder<Box<String>>(
+        valueListenable: _boxListenable,
+        builder: (_, Box<String> box, __) {
+          final bills =
+              box.values.map((e) => BillModel.fromJson(jsonDecode(e))).toList();
+          if (bills.isEmpty) {
+            return Center(
+              child: Text(
+                'No bills yet.\n'
+                'Press the button to add one.',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            );
+          }
+          return ListView.builder(
+            itemCount: bills.length,
+            itemBuilder: (context, index) => _BillCard(bills[index]),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed(
+          Routes.billAddingPage.name,
+        ),
+        tooltip: 'Add new bill',
+        child: const Icon(Icons.add),
       ),
     );
   }
