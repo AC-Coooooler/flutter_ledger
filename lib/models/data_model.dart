@@ -16,7 +16,9 @@ part 'data_model.g.dart';
 
 // Belows are models part.
 part 'bill_model.dart';
+
 part 'person_model.dart';
+
 part 'record_model.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -29,6 +31,9 @@ abstract class DataModel extends Equatable {
   Json toJson();
 
   dynamic get copyWith;
+
+  /// Avoid intent from the json encoder.
+  String toNoIntentString() => globalJsonEncoderWithoutIntent.convert(toJson());
 
   @override
   String toString() => globalJsonEncoder.convert(toJson());
