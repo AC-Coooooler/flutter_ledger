@@ -4,6 +4,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 @FFArgumentImport()
 import 'package:ledger/exports.dart';
 
@@ -39,7 +40,11 @@ class _HomePageState extends State<HomePage> {
           }
           return ListView.builder(
             itemCount: bills.length,
-            itemBuilder: (context, index) => _BillCard(bills[index]),
+            itemBuilder: (context, index) => _BillCard(
+              key: ValueKey(bills[index].name),
+              bill: bills[index],
+              boxIndex: index,
+            ),
           );
         },
       ),
@@ -55,13 +60,39 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _BillCard extends StatelessWidget {
-  const _BillCard(this.bill, {Key? key}) : super(key: key);
+  const _BillCard({
+    Key? key,
+    required this.bill,
+    required this.boxIndex,
+  }) : super(key: key);
 
   final BillModel bill;
+  final int boxIndex;
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildSlidable({
+    required BuildContext context,
+    required Widget child,
+  }) {
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const StretchMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (_) => Boxes.contentBox.deleteAt(boxIndex),
+            backgroundColor: recordColorExpense,
+            borderRadius: RadiusConstants.r4,
+            label: 'Delete',
+            icon: Icons.delete,
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+  Widget _buildCard(BuildContext context) {
     return Card(
+      margin: EdgeInsets.zero,
       child: ListTile(
         leading: SizedBox.fromSize(
           size: const Size.square(36),
@@ -85,6 +116,14 @@ class _BillCard extends StatelessWidget {
           arguments: Routes.billPage.d(bill: bill),
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4),
+      child: _buildSlidable(context: context, child: _buildCard(context)),
     );
   }
 }

@@ -23,6 +23,7 @@ dependencies:
   flutter_displaymode: ^0.4.0
   flutter_localizations:
     sdk: flutter
+  flutter_slidable: ^2.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: any
